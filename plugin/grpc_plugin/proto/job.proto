@@ -1,0 +1,30 @@
+syntax = "proto3";
+service JobMgr {
+      rpc add (JobReq) returns (Result) {}
+      rpc delete (JobReq) returns (Result) {}
+      rpc update (JobReq) returns (Result) {}
+      rpc start (JobReq) returns (Result) {}
+      rpc stop (JobReq) returns (Result) {}
+      rpc getRunning (JobStatus) returns (JobList) {}
+}
+
+message JobStatus {
+
+}
+
+message JobList {
+    repeated JobReq jobReq = 1;
+}
+
+message JobReq {
+    uint64 id = 1;
+    string name = 2;
+    string crontab = 3;
+    string command = 4;
+}
+
+message Result {
+    int32 code = 1;
+    string message = 2;
+}
+
